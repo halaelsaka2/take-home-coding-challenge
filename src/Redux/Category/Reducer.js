@@ -8,7 +8,11 @@ export default function CategoryReducer(state = initialState, action) {
         ...state,
         allCategories: action.data,
       };
-
+    case types.SAVE_CATEGORY_ID:
+      return {
+        ...state,
+        currentCategory: action.data,
+      };
     default:
       return state;
   }
