@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getAll, getProductsByfilters } from "../../Redux/Product/Action";
 import { Row, Col, Card, Rate, Pagination } from "antd";
-import "./style.css"
+import "./style.css";
 const { Meta } = Card;
 const Product = (props) => {
   useEffect(() => {
     if (props.allProducts.length === 0) props.getAll();
   }, [props]);
 
-  const handleRatingProduct = (value) => {
-    console.log(value);
-  };
   const paginateHandler = (page) => {
     props.getProductsByfilters(props.currentCategory, props.currentColors, props.currentPriceRange, page);
   };
@@ -44,7 +41,7 @@ const Product = (props) => {
                   title={product.name}
                   description={
                     <Col>
-                      <Rate allowHalf value={product.rating} onChange={handleRatingProduct} />
+                      <Rate allowHalf value={product.rating} />
                       <h3>${product.price}</h3>
                     </Col>
                   }

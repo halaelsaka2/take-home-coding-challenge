@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Category from "../../Components/Category";
 import Product from "../../Components/Product";
 import SiderBody from "../../Components/Sider";
-import { Layout } from "antd";
+import { Layout, Row, Col } from "antd";
 import { connect } from "react-redux";
 const { Header, Sider, Content } = Layout;
 function App(props) {
@@ -16,6 +16,13 @@ function App(props) {
   }, [props]);
   return (
     <Layout>
+      <Row justify="center" style={{backgroundColor:"white"}}>
+        <Col>
+          <h2 style={{fontWeight:"bold"}}>Our E-Commerce Store</h2>
+          <div>choose one of our category blew</div>
+        </Col>
+      </Row>
+
       <Header className="header" style={{ backgroundColor: "white" }}>
         <Category />
       </Header>

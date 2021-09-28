@@ -9,12 +9,9 @@ const SiderBody = (props) => {
   const [colors, setColors] = useState([]);
 
   const rangePriceHandler = (value, l) => {
-    console.log(value, l);
     setRangeValue(value);
   };
   const afterChangeRangePriceHandler = (values, l) => {
-    console.log(values, l);
-    console.log(rangeValue);
     props.savePriceRange(values);
     props.getProductsByfilters(props.currentCategory, colors, values, props.currentPage);
   };
@@ -29,7 +26,6 @@ const SiderBody = (props) => {
     props.getProductsByfilters(props.currentCategory, [], rangeValue, props.currentPage);
   };
   const colorHandler = (values) => {
-    console.log(values);
     setColors(values);
     props.saveColors(values);
     props.getProductsByfilters(props.currentCategory, values, rangeValue, props.currentPage);

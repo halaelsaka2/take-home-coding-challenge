@@ -10,27 +10,28 @@ const Category = (props) => {
   }, [props]);
 
   const categoryHandler = (categoryId) => {
-    console.log(categoryId);
     props.saveCategoryId(categoryId);
     props.getProductsByfilters(categoryId, props.currentColors, props.currentPriceRange, props.currentPage);
   };
   return (
-    <Row gutter={20} justify="center">
-      {props.allCategories.map((category) => (
-        <Col span={4} key={category.id}>
-          <h2
-            style={{
-              cursor: "pointer",
-              textAlign: "center",
-              width: "100%",
-            }}
-            onClick={() => categoryHandler(category.id)}
-          >
-            {category.name}
-          </h2>
-        </Col>
-      ))}
-    </Row>
+    <>
+      <Row gutter={20} justify="center">
+        {props.allCategories.map((category) => (
+          <Col span={4} key={category.id}>
+            <h2
+              style={{
+                cursor: "pointer",
+                textAlign: "center",
+                width: "100%",
+              }}
+              onClick={() => categoryHandler(category.id)}
+            >
+              {category.name}
+            </h2>
+          </Col>
+        ))}
+      </Row>
+    </>
   );
 };
 

@@ -10,7 +10,6 @@ export default function ProductReducer(state = initialState, action) {
         productsToView: action.data,
       };
     case types.FILTER_PRODUCTS:
-      console.log(action.data);
       return {
         ...state,
         allProductWithFilter: action.data.products,
