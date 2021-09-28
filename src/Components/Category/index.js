@@ -15,9 +15,9 @@ const Category = (props) => {
   };
   return (
     <>
-      <Row gutter={20} justify="center">
+      <Row gutter={{ lg: 20, xl: 20, md: 24, sm: 24, xs: 24 }} justify="center">
         {props.allCategories.map((category) => (
-          <Col span={4} key={category.id}>
+          <Col lg={4} xl={4} md={8} sm={12} xm={12} key={category.id}>
             <h2
               style={{
                 cursor: "pointer",

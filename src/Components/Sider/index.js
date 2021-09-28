@@ -18,87 +18,90 @@ const SiderBody = (props) => {
   const clearRangeHandler = (e) => {
     setRangeValue([]);
     props.savePriceRange([]);
-    props.getProductsByfilters(props.currentCategory, colors, [], props.currentPage);
+    if (rangeValue.length > 0) props.getProductsByfilters(props.currentCategory, colors, [], props.currentPage);
   };
   const clearColorHandler = () => {
     setColors([]);
     props.saveColors([]);
-    props.getProductsByfilters(props.currentCategory, [], rangeValue, props.currentPage);
+    if (colors.length > 0) props.getProductsByfilters(props.currentCategory, [], rangeValue, props.currentPage);
   };
   const colorHandler = (values) => {
+    console.log(values);
     setColors(values);
     props.saveColors(values);
     props.getProductsByfilters(props.currentCategory, values, rangeValue, props.currentPage);
   };
   return (
-    <Card style={{ width: "100%", height: "100%" }}>
-      <Row gutter={24} style={{ marginBottom: "2rem" }}>
-        <Col span={24}>
-          <Card
-            actions={[
-              <Row gutter={6} style={{ cursor: "pointer", marginLeft: ".5rem" }}>
-                <Col>
-                  <CloseOutlined onMouseUp={clearRangeHandler} />
+    <Col lg={24} md={20} sm={16} xs={16}>
+      <Card>
+        <Row gutter={{ lg: 24, md: 20, sm: 16, xs: 16 }} style={{ marginBottom: "2rem" }}>
+          <Col lg={24} md={24} sm={24} xs={24}>
+            <Card
+              actions={[
+                <Row style={{ cursor: "pointer", marginLeft: ".5rem" }}>
+                  <Col>
+                    <CloseOutlined onMouseUp={clearRangeHandler} />
+                  </Col>
+                  <Col>
+                    <h4 onMouseUp={clearRangeHandler}>Clear</h4>
+                  </Col>
+                </Row>,
+              ]}
+              style={{ width: "100%" }}
+            >
+              <Row gutter={{ lg: 24, md: 20, sm: 16, xs: 16 }}>
+                <Col lg={24} md={24} sm={24} xs={24}>
+                  <h4>Price Range</h4>
+                  <Slider
+                    style={{ width: "100%" }}
+                    max={1000}
+                    range={{ draggableTrack: true }}
+                    value={rangeValue}
+                    onChange={rangePriceHandler}
+                    onAfterChange={afterChangeRangePriceHandler}
+                  />
                 </Col>
-                <Col>
-                  <h4 onMouseUp={clearRangeHandler}>Clear</h4>
-                </Col>
-              </Row>,
-            ]}
-            style={{ width: "100% " }}
-          >
-            <Row gutter={24}>
-              <Col span={24}>
-                <h4>Price Range</h4>
-                <Slider
-                  style={{ width: "100%" }}
-                  max={1000}
-                  range={{ draggableTrack: true }}
-                  value={rangeValue}
-                  onChange={rangePriceHandler}
-                  onAfterChange={afterChangeRangePriceHandler}
-                />
-              </Col>
-            </Row>
-          </Card>
-        </Col>
-      </Row>
+              </Row>
+            </Card>
+          </Col>
+        </Row>
 
-      <Row gutter={24} style={{ marginBottom: "2rem" }}>
-        <Col span={24}>
-          <Card
-            style={{ width: "100%" }}
-            actions={[
-              <Row gutter={6} style={{ cursor: "pointer", marginLeft: ".5rem" }}>
-                <Col>
-                  <CloseOutlined onClick={clearColorHandler} />
+        <Row gutter={24} style={{ marginBottom: "2rem" }}>
+          <Col span={24}>
+            <Card
+              style={{ width: "100%" }}
+              actions={[
+                <Row style={{ cursor: "pointer", marginLeft: ".5rem" }}>
+                  <Col>
+                    <CloseOutlined onClick={clearColorHandler} />
+                  </Col>
+                  <Col>
+                    <h4 onClick={clearColorHandler}>Clear</h4>
+                  </Col>
+                </Row>,
+              ]}
+              bodyStyle={{ height: "40vh", overflowY: "auto" }}
+            >
+              <Row gutter={24}>
+                <Col span={24}>
+                  <h4>Colors</h4>
+                  <Checkbox.Group style={{ width: "100%" }} onChange={colorHandler} value={colors}>
+                    {[...props.colors].length > 0 &&
+                      [...props.colors].map((color) => (
+                        <div style={{ width: "100%" }} key={color}>
+                          <Checkbox style={{ width: "100%" }} value={color}>
+                            {color}
+                          </Checkbox>
+                        </div>
+                      ))}
+                  </Checkbox.Group>
                 </Col>
-                <Col>
-                  <h4 onClick={clearColorHandler}>Clear</h4>
-                </Col>
-              </Row>,
-            ]}
-            bodyStyle={{ height: "50vh", overflowY: "auto" }}
-          >
-            <Row gutter={24}>
-              <Col span={24}>
-                <h4>Colors</h4>
-                <Checkbox.Group style={{ width: "100%" }} onChange={colorHandler} value={colors}>
-                  {[...props.colors].length > 0 &&
-                    [...props.colors].map((color) => (
-                      <div style={{ width: "100%" }} key={color}>
-                        <Checkbox style={{ width: "100%" }} value={color}>
-                          {color}
-                        </Checkbox>
-                      </div>
-                    ))}
-                </Checkbox.Group>
-              </Col>
-            </Row>
-          </Card>
-        </Col>
-      </Row>
-    </Card>
+              </Row>
+            </Card>
+          </Col>
+        </Row>
+      </Card>
+    </Col>
   );
 };
 

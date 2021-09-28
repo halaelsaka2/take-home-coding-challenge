@@ -18,7 +18,7 @@ const Product = (props) => {
       <Row gutter={[16, 16]}>
         {props.allProductWithFilter.length > 0 ? (
           props.allProductWithFilter.map((product) => (
-            <Col span={8} key={product.id}>
+            <Col key={product.id} lg={{ span: 8 }} xl={{ span: 8 }} md={{ span: 12 }} sm={{ span: 24 }}>
               <Card
                 hoverable
                 style={{ width: 240, textAlign: "center" }}
@@ -59,7 +59,6 @@ const Product = (props) => {
       <Row gutter={24}>
         <Col span={24} align="right">
           <Pagination
-            defaultCurrent={1}
             total={props.productsCount}
             responsive={true}
             hideOnSinglePage={true}

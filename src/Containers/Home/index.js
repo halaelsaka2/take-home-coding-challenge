@@ -16,14 +16,20 @@ function App(props) {
   }, [props]);
   return (
     <Layout>
-      <Row justify="center" style={{backgroundColor:"white"}}>
+      <Row justify="center" style={{ backgroundColor: "white" }}>
         <Col>
-          <h2 style={{fontWeight:"bold"}}>Our E-Commerce Store</h2>
+          <h2 style={{ fontWeight: "bold" }}>Our E-Commerce Store</h2>
           <div>choose one of our category blew</div>
         </Col>
       </Row>
 
-      <Header className="header" style={{ backgroundColor: "white" }}>
+      <Header
+        className="header"
+        style={{
+          backgroundColor: "white",
+          height: window.innerWidth < 1000 ? "130px" : window.innerWidth < 760 ? "190px" : "100%",
+        }}
+      >
         <Category />
       </Header>
       <Layout>
